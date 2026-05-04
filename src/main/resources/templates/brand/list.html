@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Brand List</title>
+</head>
+<body>
+<h2>Brand List</h2>
+
+<a href="/brands/create">Add Brand</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="b : ${brands}">
+        <td th:text="${b.id}"></td>
+        <td th:text="${b.name}"></td>
+        <td th:text="${b.description}"></td>
+        <td>
+            <a th:href="@{'/brands/edit/' + ${b.id}}">Edit</a>
+            <a th:href="@{'/brands/delete/' + ${b.id}}"
+               onclick="return confirm('Delete?')">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

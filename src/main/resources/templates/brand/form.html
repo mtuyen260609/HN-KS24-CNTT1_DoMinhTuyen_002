@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Device Form</title>
+</head>
+<body>
+
+<h2>Device Form</h2>
+
+<form th:action="@{/devices/save}"
+      th:object="${device}"
+      method="post"
+      enctype="multipart/form-data">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    Name: <input type="text" th:field="*{deviceName}"/><br>
+    Model: <input type="text" th:field="*{modelCode}"/><br>
+    Price: <input type="number" th:field="*{price}"/><br>
+    Date: <input type="date" th:field="*{manufactureDate}"/><br>
+
+    Brand:
+    <select th:field="*{brand}">
+        <option th:each="b : ${brands}"
+                th:value="${b}"
+                th:text="${b.name}">
+        </option>
+    </select><br>
+
+    Available:
+    <input type="checkbox" th:field="*{isAvailable}"/><br>
+
+    Image:
+    <input type="file" name="imageFile"/><br>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
